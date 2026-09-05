@@ -19,6 +19,7 @@ const steps = [
   { script: '5-translate.mjs',      label: 'Stap 5: Reviews vertalen' },
   // Stap 6 (statische mini-tiles) vervangen door interactieve Leaflet mini-kaart in de app
   { script: '7-bundle.mjs',         label: 'Stap 7: data.json samenvoegen' },
+  { script: '8-apply-manual-translations.mjs', label: 'Stap 8: handmatige vertalingen toepassen' },
 ];
 
 const start = Date.now();

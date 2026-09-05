@@ -1074,14 +1074,19 @@ function buildReviewsSection(poi) {
         <span class="google-attr-g">G</span> Reviews van Google Maps
         ${poi.google_rating ? `· <span class="stars">${starsString(Math.round(poi.google_rating))}</span> ${poi.google_rating.toFixed(1)} (${poi.google_total_ratings ?? 0} totaal)` : ''}
       </div>
-      ${poi.google_reviews.map(r => `
+      ${poi.google_reviews.map(r => {
+        const langBadge = r.translated_from
+          ? `<span style="font-size:.68rem;background:var(--bg3);padding:1px 5px;border-radius:4px;color:var(--text2)">vertaald uit ${r.translated_from.toUpperCase()}</span>`
+          : '';
+        return `
         <div class="review-card">
           <div class="review-header">
-            <span class="review-author">${esc(r.author)}</span>
+            <span class="review-author">${esc(r.author)} ${langBadge}</span>
             <span class="review-date">${r.rating ? starsString(r.rating) + ' ' : ''}${r.relative_time ?? (r.date ? formatDate(r.date) : '')}</span>
           </div>
           <div class="review-english">${esc(r.text || '')}</div>
-        </div>`).join('')}
+        </div>`;
+      }).join('')}
     </div>` : '';
 
   return tabsHtml + mapyHtml + googleHtml;
